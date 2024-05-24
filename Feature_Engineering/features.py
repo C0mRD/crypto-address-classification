@@ -7,22 +7,63 @@ class FeatureEngineering:
 
     def extract_features(self, address):
         features = {}
+    
+        # Length of the address
         features['length'] = len(address)
+    
+        # Prefix of the address
+        if address.startswith('0x'):
+            features['prefix'] = '0x'
+        elif address.startswith('1'):
+            features['prefix'] = '1'
+        elif address.startswith('3'):
+            features['prefix'] = '3'
+        elif address.startswith('bc1'):
+            features['prefix'] = 'bc1'
+        elif address.startswith('X'):
+            features['prefix'] = 'X'
+        elif address.startswith('7'):
+            features['prefix'] = '7'
+        else:
+            features['prefix'] = 'unknown'
+    
+        # Character set
+        if re.match(r'^0x[a-fA-F0-9]{40}$', address):
+            features['char_set'] = 'hex'
+        elif re.match(r'^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$', address) or re.match(r'^bc1[ac-hj-np-z02-9]{38,59}$', address):
+            features['char_set'] = 'base58'
+        elif re.match(r'^X[1-9A-HJ-NP-Za-km-z]{25,34}$', address):
+            features['char_set'] = 'base58'
+        else:
+            features['char_set'] = 'unknown'
+
+        # Checksum mechanism
+        if re.match(r'^0x[a-fA-F0-9]{40}$', address):
+            features['checksum'] = 'keccak-256'
+        elif re.match(r'^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$', address) or re.match(r'^bc1[ac-hj-np-z02-9]{38,59}$', address):
+            features['checksum'] = 'base58check'
+        elif re.match(r'^X[1-9A-HJ-NP-Za-km-z]{25,34}$', address):
+            features['checksum'] = 'base58check'
+        else:
+            features['checksum'] = 'unknown'
+    
+        # Address format
+        if re.match(r'^1[a-km-zA-HJ-NP-Z1-9]{25,34}$', address):
+            features['format'] = 'P2PKH'
+        elif re.match(r'^3[a-km-zA-HJ-NP-Z1-9]{25,34}$', address):
+            features['format'] = 'P2SH'
+        elif re.match(r'^bc1[ac-hj-np-z02-9]{38,59}$', address):
+            features['format'] = 'Bech32'
+        elif re.match(r'^0x[a-fA-F0-9]{40}$', address):
+            features['format'] = 'Ethereum'
+        elif re.match(r'^X[1-9A-HJ-NP-Za-km-z]{25,34}$', address):
+            features['format'] = 'Dash'
+        else:
+            features['format'] = 'unknown'
+    
+        # Number of alphabetic characters and digits
+        features['num_alpha'] = sum(c.isalpha() for c in address)
         features['num_digits'] = sum(c.isdigit() for c in address)
-        features['num_letters'] = sum(c.isalpha() for c in address)
-    
-        # Character frequency (assuming ASCII characters)
-        for char in '0123456789abcdefghijklmnopqrstuvwxyz':
-            features[f'char_freq_{char}'] = address.count(char)
-    
-        # Prefix analysis
-        features['starts_with'] = address[0]
-        features['ends_with'] = address[-1]
-    
-        # Specific blockchain patterns
-        features['is_btc'] = int(re.match(r'^1|3|bc1', address) is not None)
-        features['is_eth'] = int(re.match(r'^0x', address) is not None)
-        features['is_dash'] = int(re.match(r'^X', address) is not None)
     
         return features
     
