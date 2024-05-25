@@ -13,15 +13,15 @@ class FeatureEngineering:
     
         # Prefix of the address
         if address.startswith('0x'):
-            features['prefix'] = 'e'
+            features['prefix'] = '0x'
         elif address.startswith('1'):
-            features['prefix'] = 'b'
+            features['prefix'] = '1'
         elif address.startswith('3'):
-            features['prefix'] = 'b'
+            features['prefix'] = '3'
         elif address.startswith('bc1'):
-            features['prefix'] = 'b'
+            features['prefix'] = 'bc1'
         elif address.startswith('X'):
-            features['prefix'] = 'd'
+            features['prefix'] = 'X'
         else:
             features['prefix'] = 'unknown'
 
