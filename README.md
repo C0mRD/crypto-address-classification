@@ -16,7 +16,7 @@ This project aims to classify cryptocurrency addresses into three types: Bitcoin
 
 ## Deployment
 Trained models are deployed as an API service using Fastapi. You can directly try it out here: 
-[https://crypto-address-classification.onrender.com](https://crypto-address-classification.onrender.com)
+[https://crypto-address-classification.onrender.com/docs](https://crypto-address-classification.onrender.com/docs)
 
 ## Setup Instructions
 ### Prerequisites
