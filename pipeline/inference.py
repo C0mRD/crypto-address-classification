@@ -7,6 +7,7 @@ from sklearn.naive_bayes import GaussianNB
 from pipeline.features import FeatureEngineering
 import joblib
 from tensorflow.keras.models import load_model
+import re
 
 class Inference:
     def __init__(self):
@@ -42,7 +43,6 @@ class Inference:
 
         # Reorder columns to match training data
         df = df[self.training_columns]
-        print(df.columns)
 
         # Scale features
         df_scaled = self.scaler.fit_transform(df)
@@ -63,16 +63,35 @@ class Inference:
         predicted_class = np.argmax(prediction, axis=1)
         predicted_label = self.classes[predicted_class][0]
         return predicted_label
+    
+    def combined_inference(self, address):
+        # Perform inference using ML models
+        ml_results = self.models_inference(address)
+
+        # Perform inference using neural network model
+        nn_result = self.nn_inference(address)
+
+        # Checksum comparison
+        if re.match(r'^0x[a-fA-F0-9]{40}$', address):
+            checksum = 'ethereum'
+        elif re.match(r'^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$', address) or re.match(r'^bc1[ac-hj-np-z02-9]{38,59}$', address):
+            checksum = 'bitcoin'
+        elif re.match(r'^X[1-9A-HJ-NP-Za-km-z]{25,34}$', address):
+            checksum = 'dash'
+
+        # Check if ML results match with checksum
+        for model_result in ml_results.values():
+            if model_result == checksum:
+                return model_result
+
+        # If ML results don't match with checksum, return based on neural network result
+        return checksum
 
 # Example usage
 if __name__ == "__main__":
-    test_address = "1N88Ctk7e3taTxjKwzNKTUU1Jc9QJ99q35"
+    test_address = str(input("Enter the address:"))
     inference = Inference()
     
-    results = inference.models_inference(test_address)
-    print("Inference results for address:", test_address)
-    for model_name, predicted_class in results.items():
-        print(f"{model_name}: {predicted_class}")
-
-    nn_result = inference.nn_inference(test_address)
-    print("Neural Network prediction:", nn_result)
+    combined_result = inference.combined_inference(test_address)
+    print("Combined Inference result for address:", test_address)
+    print("Combined Inference:", combined_result)
