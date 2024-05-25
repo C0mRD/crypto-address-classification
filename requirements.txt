@@ -2,3 +2,9 @@ pandas
 numpy
 dvc
 dvc_gdrive
+scikit-learn==1.4.0
+tensorflow
+imbalanced-learn
+matplotlib
+seaborn
+-e .
