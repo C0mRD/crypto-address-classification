@@ -14,29 +14,9 @@
 ## Project Overview
 This project aims to classify cryptocurrency addresses into three types: Bitcoin, Ethereum, and Dash, using machine learning techniques. The classification is based on various features extracted from the addresses.
 
-## Directory Structure
-your_project/
-├── pipeline/
-│ ├── init.py
-│ ├── feature.py
-│ ├── preprocess.py
-├── models/
-│ ├── RandomForest.pkl
-│ ├── classes.npy
-├── data/
-│ ├── addresses.csv
-├── notebooks/
-│ ├── EDA.ipynb
-│ ├── Training.ipynb
-├── Model_Inference/
-│ ├── inference.py
-├── setup.py
-├── requirements.txt
-├── README.md
-
 ## Setup Instructions
 ### Prerequisites
-- Python 3.8+
+- Python 3.10
 - pip
 
 ### Installation
