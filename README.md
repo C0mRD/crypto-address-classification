@@ -15,7 +15,8 @@
 This project aims to classify cryptocurrency addresses into three types: Bitcoin, Ethereum, and Dash, using machine learning techniques. The classification is based on various features extracted from the addresses.
 
 ## Deployment
-Trained models are deployed as an API service using Fastapi. You can directly try it out here: [https://crypto-address-classification.onrender.com] (https://crypto-address-classification.onrender.com)
+Trained models are deployed as an API service using Fastapi. You can directly try it out here: 
+[https://crypto-address-classification.onrender.com] (https://crypto-address-classification.onrender.com)
 
 ## Setup Instructions
 ### Prerequisites
