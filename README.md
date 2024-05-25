@@ -14,6 +14,9 @@
 ## Project Overview
 This project aims to classify cryptocurrency addresses into three types: Bitcoin, Ethereum, and Dash, using machine learning techniques. The classification is based on various features extracted from the addresses.
 
+## Deployment
+Trained models are deployed as an API service using Fastapi. You can directly try it out here: [https://crypto-address-classification.onrender.com] (https://crypto-address-classification.onrender.com)
+
 ## Setup Instructions
 ### Prerequisites
 - Python 3.10
@@ -86,10 +89,5 @@ The `inference.py` script is used for making predictions on new addresses. It lo
 Future enhancements to the project may include:
 - Adding support for more cryptocurrency address types
 - Improving feature extraction methods
-- Exploring advanced machine learning models for better performance
-- Implementing a web API for real-time address classification
-
----
-
-This template provides a clear structure and concise descriptions of each part of your project. You can customize it further as needed to fit the specific details and requirements of your project.
+- Increasing amount of dataset for model training
 
