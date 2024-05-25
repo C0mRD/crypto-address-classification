@@ -42,13 +42,20 @@ Feature extraction is handled in the `feature.py` file within the `pipeline` dir
 
 ## Model Training
 Model training is performed in the `Training.ipynb` notebook. Various classification models were trained and evaluated, including:
-- Logistic Regression
 - Random Forest
 - Support Vector Machine
+- Naive Bayes
 - Neural Networks
 
 ## Model Performance
 Model performance was evaluated using various metrics, including accuracy, precision, recall, and F1 score. The Random Forest model showed the best performance, followed by Gradient Boosting and Logistic Regression.
+
+| Model Name  | Train Accuracy  |
+| :------------ |:---------------:|
+| Random Forest | 98.35% |
+| SVM      |      97.85%   |
+| Naive Bayes | 97.34%        |
+| Neural Network | 99.14% |
 
 ### Feature Importance
 Feature importance was assessed using the feature importances attribute of the Random Forest model. Key features contributing to the model's performance include:
