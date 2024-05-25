@@ -2,7 +2,7 @@ import pandas as pd
 import re
 
 class FeatureEngineering:
-    def __init__(self, data):
+    def __init__(self, data=None):
         self.data = data
 
     def extract_features(self, address):
@@ -13,29 +13,17 @@ class FeatureEngineering:
     
         # Prefix of the address
         if address.startswith('0x'):
-            features['prefix'] = '0x'
+            features['prefix'] = 'e'
         elif address.startswith('1'):
-            features['prefix'] = '1'
+            features['prefix'] = 'b'
         elif address.startswith('3'):
-            features['prefix'] = '3'
+            features['prefix'] = 'b'
         elif address.startswith('bc1'):
-            features['prefix'] = 'bc1'
+            features['prefix'] = 'b'
         elif address.startswith('X'):
-            features['prefix'] = 'X'
-        elif address.startswith('7'):
-            features['prefix'] = '7'
+            features['prefix'] = 'd'
         else:
             features['prefix'] = 'unknown'
-    
-        # Character set
-        if re.match(r'^0x[a-fA-F0-9]{40}$', address):
-            features['char_set'] = 'hex'
-        elif re.match(r'^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$', address) or re.match(r'^bc1[ac-hj-np-z02-9]{38,59}$', address):
-            features['char_set'] = 'base58'
-        elif re.match(r'^X[1-9A-HJ-NP-Za-km-z]{25,34}$', address):
-            features['char_set'] = 'base58'
-        else:
-            features['char_set'] = 'unknown'
 
         # Checksum mechanism
         if re.match(r'^0x[a-fA-F0-9]{40}$', address):
@@ -43,23 +31,9 @@ class FeatureEngineering:
         elif re.match(r'^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$', address) or re.match(r'^bc1[ac-hj-np-z02-9]{38,59}$', address):
             features['checksum'] = 'base58check'
         elif re.match(r'^X[1-9A-HJ-NP-Za-km-z]{25,34}$', address):
-            features['checksum'] = 'base58check'
+            features['checksum'] = 'x11'
         else:
             features['checksum'] = 'unknown'
-    
-        # Address format
-        if re.match(r'^1[a-km-zA-HJ-NP-Z1-9]{25,34}$', address):
-            features['format'] = 'P2PKH'
-        elif re.match(r'^3[a-km-zA-HJ-NP-Z1-9]{25,34}$', address):
-            features['format'] = 'P2SH'
-        elif re.match(r'^bc1[ac-hj-np-z02-9]{38,59}$', address):
-            features['format'] = 'Bech32'
-        elif re.match(r'^0x[a-fA-F0-9]{40}$', address):
-            features['format'] = 'Ethereum'
-        elif re.match(r'^X[1-9A-HJ-NP-Za-km-z]{25,34}$', address):
-            features['format'] = 'Dash'
-        else:
-            features['format'] = 'unknown'
     
         # Number of alphabetic characters and digits
         features['num_alpha'] = sum(c.isalpha() for c in address)
