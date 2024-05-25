@@ -30,6 +30,11 @@ This project aims to classify cryptocurrency addresses into three types: Bitcoin
     ```bash
     pip install -r requirements.txt
     ```
+4. For Inference:
+    ```bash
+    cd pipeline
+    python inference.py
+    ```
 
 ## Dataset
 I couldn't find any single dataset that contains proper address of multiple crypto currencies. So, I have collected data from different sources.
