@@ -44,7 +44,7 @@ Feature extraction is handled in the `feature.py` file within the `pipeline` dir
 Model training is performed in the `Training.ipynb` notebook. Various classification models were trained and evaluated, including:
 - Logistic Regression
 - Random Forest
-- Gradient Boosting
+- Support Vector Machine
 - Neural Networks
 
 ## Model Performance
@@ -52,9 +52,11 @@ Model performance was evaluated using various metrics, including accuracy, preci
 
 ### Feature Importance
 Feature importance was assessed using the feature importances attribute of the Random Forest model. Key features contributing to the model's performance include:
+- CheckSum type
 - Address length
 - Number of digits
 - Prefix type
+![Feature Imp Image](https://github.com/C0mRD/crypto-address-classification/blob/main/Feature_Engineering/feature_imp.png?raw=true)
 
 ## Inference
 The `inference.py` script is used for making predictions on new addresses. It loads the trained model and the label encoder, extracts features from the input address, preprocesses these features, and then uses the model to predict the address type.
