@@ -22,13 +22,8 @@ This project aims to classify cryptocurrency addresses into three types: Bitcoin
 ### Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your_username/your_project.git
-    cd your_project
-    ```
-
-2. Install the package:
-    ```bash
-    pip install .
+    git clone https://github.com/C0mRD/crypto-address-classification.git
+    cd crypto-address-classification
     ```
 
 3. Install the dependencies:
