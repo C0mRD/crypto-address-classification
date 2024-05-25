@@ -31,6 +31,11 @@ This project aims to classify cryptocurrency addresses into three types: Bitcoin
     pip install -r requirements.txt
     ```
 
+## Dataset
+I couldn't find any single dataset that contains proper address of multiple crypto currencies. So, I have collected data from different sources.
+- [MBal 10m crypto address dataset] (https://www.kaggle.com/datasets/yidongchaintoolai/mbal-10m-crypto-address-label-dataset)
+- [Blockchair Dash address dataset] (https://gz.blockchair.com/dash/addresses)
+
 ## Feature Extraction
 Feature extraction is handled in the `feature.py` file within the `pipeline` directory. Key features include:
 - Length of the address
