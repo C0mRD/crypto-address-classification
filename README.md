@@ -39,6 +39,11 @@ Trained models are deployed as an API service using Fastapi. You can directly tr
     cd pipeline
     python inference.py
     ```
+4. To run the api:
+    ```bash
+    cd deploy/api
+    python app.py
+    ```
 
 ## Dataset
 I couldn't find any single dataset that contains proper address of multiple crypto currencies. So, I have collected data from different sources.
