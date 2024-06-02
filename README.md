@@ -29,17 +29,27 @@ Trained models are deployed as an API service using Fastapi. You can directly tr
     git clone https://github.com/C0mRD/crypto-address-classification.git
     cd crypto-address-classification
     ```
-
-3. Install the dependencies:
+2. Environment setup:
+   For Mac/Linux
+    ```bash
+    python3 -m venv .venv
+    source .venv
+    ```
+   For Windows
+    ```bash
+    py -m venv .venv
+    .venv\Scripts\activate
+    ```
+4. Install the dependencies:
     ```bash
     pip install -r requirements.txt
     ```
-4. For Inference:
+5. For Inference:
     ```bash
     cd pipeline
     python inference.py
     ```
-4. To run the api:
+6. To run the api:
     ```bash
     cd deploy/api
     python app.py
