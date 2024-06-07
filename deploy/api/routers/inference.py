@@ -7,19 +7,18 @@ import os
 
 router = APIRouter()
 
-@router.get("/combined_inference")
-async def inference_route(address: str):
-    try:
-        results = combined_prediction(str(address))
-        return str(results)
-    except Exception as e:
-        HTTPException(502, detail="Could not run inference")
-
-
-@router.get("/nn_inference")
+@router.get("/inference")
 async def inference_route(address: str):
     try:
         results = nn_prediction(str(address))
         return str(results)
     except Exception as e:
         HTTPException(502, detail="Could not run inference")
+
+# @router.get("/combined_inference")
+# async def inference_route(address: str):
+#     try:
+#         results = combined_prediction(str(address))
+#         return str(results)
+#     except Exception as e:
+#         HTTPException(502, detail="Could not run inference")
